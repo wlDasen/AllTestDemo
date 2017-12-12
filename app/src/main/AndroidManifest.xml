@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LittleDemoActivity"></activity>
+        <activity android:name=".LittleDemoActivity" />
+        <activity android:name=".ConstraintLayoutActivity" />
+        <activity android:name=".CommonFunctionActivity"></activity>
     </application>
 
 </manifest>

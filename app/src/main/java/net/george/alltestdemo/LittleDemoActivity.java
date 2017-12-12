@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 比较小的Demo验证Activit
+ * 比较小的Demo验证Activity
  * Created at 2017.12.11 By George
  */
 public class LittleDemoActivity extends AppCompatActivity {

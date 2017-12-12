@@ -14,5 +14,15 @@
             android:layout_height="wrap_content"
             android:text="小Demo验证"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ConstraintLayout验证"/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="常用基本功能验证"/>
 
 </LinearLayout>
