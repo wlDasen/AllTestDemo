@@ -2,8 +2,8 @@
 ==============
 ### 包含的Demo列表：
  * ConstraintLayout测试程序
-     * 基本布局以及属性介绍 [原文链接](https://juejin.im/post/5a1d9ba66fb9a044fb07819e#heading-35)
-     * **动画部分待补充**
+     * 基本布局以及属性介绍 [原文链接](https://juejin.im/post/5a1d9ba66fb9a044fb07819e#heading-35)
+     * **动画部分待补充**
  * Android常用功能测试程序
      * 获取屏幕宽高和屏幕密度 [原文链接](http://blog.csdn.net/liuwan1992/article/details/52795284)
  * 各个小Demo测试程序
