@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--tools:context
+        context属性其实正是的称呼是activity属性，有了这个属性，ide就知道在预览布局的时候该采用什么样的主题。同时他还可以在android studio的java代码中帮助找到相关的文件（Go to Related files）
+    tools:menu
+        其实预览窗口非常智能，如果布局和一个activity关联（指上面所讲的用tools:context关联）它将会自动查询相关activity的onCreateOptionsMenu方法中的代码，以显示菜单。而menu属性则可以覆盖这种默认的行为。
+-->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.george.alltestdemo.LayoutDemoActivity"
+    tools:menu="options_menu">
+
+    <!--tools命名空间：
+        在IDE预览效果，运行时被忽略-->
+    <!--第一种：关于xml布局设计：在UI设计的时候覆盖标准的android属性-->
+    <TextView
+        android:id="@+id/text_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="AAAAAAAAAAAA BBBBBBBBBB"/>
+    <!--第二种：影响Lint提示-->
+    <!--tools:ignore
+        ignore属性是告诉Lint忽略xml中的某些警告。
+    -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view1"
+        android:scaleType="center"
+        android:src="@mipmap/ic_launcher_round"
+        tools:ignore="contentDescription" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--tools命名空间之targetApi
+    去除xml中Lint关于minSdkLevel的警告-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorPrimary"
+    tools:targetApi="LOLLIPOP" />

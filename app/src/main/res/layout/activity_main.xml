@@ -24,5 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="常用基本功能验证"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Layout布局和内部属性验证"/>
 
 </LinearLayout>

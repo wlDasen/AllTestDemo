@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".LittleDemoActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
-        <activity android:name=".CommonFunctionActivity"></activity>
+        <activity android:name=".CommonFunctionActivity" />
+        <activity android:name=".LayoutDemoActivity"></activity>
     </application>
 
 </manifest>
