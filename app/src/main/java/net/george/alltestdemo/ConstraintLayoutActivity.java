@@ -31,6 +31,14 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
      * 复位Set
      */
     private ConstraintSet resetCS;
+    /**
+     * 主ConstraintLayout Set
+     */
+    private ConstraintSet constraintSet1;
+    /**
+     * 最终ConstraintLayout Set
+     */
+    private ConstraintSet getConstraintSet2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +97,7 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
         applyCS.connect(R.id.button1,ConstraintSet.BOTTOM,R.id.main_layout,ConstraintSet.BOTTOM,0);
         */
         // 所有按钮实现对齐顶部的Chain效果
+        /*
         applyCS.clear(R.id.button1);
         applyCS.clear(R.id.button2);
         applyCS.clear(R.id.button3);
@@ -107,9 +116,11 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
         applyCS.createHorizontalChain(R.id.main_layout, ConstraintSet.LEFT, R.id.main_layout, ConstraintSet.RIGHT, new int[]{R.id.button1, R.id.button2, R.id.button3},
             null, ConstraintWidget.CHAIN_PACKED);
         applyCS.setHorizontalBias(R.id.button1, 0.1f);
+        */
 
         // 开始动画
-        applyCS.applyTo(constraintLayout);
+//        applyCS.applyTo(constraintLayout);
+        getConstraintSet2.applyTo(constraintLayout);
     }
     /**
      * RESET按钮点击处理接口
@@ -119,7 +130,8 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
     public void onResetClick(View view) {
         Log.d(TAG, "onResetClick: ");
         TransitionManager.beginDelayedTransition(constraintLayout);
-        resetCS.applyTo(constraintLayout);
+//        resetCS.applyTo(constraintLayout);
+        constraintSet1.applyTo(constraintLayout);
     }
 
     /**
@@ -139,5 +151,10 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
         applyCS.clone(constraintLayout);
         resetCS = new ConstraintSet();
         resetCS.clone(constraintLayout);
+
+        constraintSet1 = new ConstraintSet();
+        getConstraintSet2 = new ConstraintSet();
+        constraintSet1.clone(constraintLayout);
+        getConstraintSet2.clone(this, R.layout.activity_constraint_layout_test_constraintset);
     }
 }

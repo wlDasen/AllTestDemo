@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--此布局文件主要为了配合ConstraintSet，验证从一个布局到另外一个布局的动画-->
+<android.support.constraint.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/applyButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onApplyClick"
+        android:text="APPLY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/resetButton" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onResetClick"
+        android:text="RESET"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/applyButton"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="8dp" />
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="352dp"
+        android:layout_height="108dp"
+        android:text="Hello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\nHello this is a simple demo. Thanks for reading and learning new things.\n"
+        app:layout_constraintTop_toBottomOf="@id/image_view"
+        android:layout_marginTop="12dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="8dp"
+        android:lines="6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp" />
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toBottomOf="@id/text_view"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/applyButton"/>
+
+</android.support.constraint.ConstraintLayout>
