@@ -1,8 +1,10 @@
 package net.george.alltestdemo;
 
+import android.support.constraint.Group;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -17,5 +19,15 @@ public class ConstraintLayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_constraint_layout);
+
+        test1();
+    }
+
+    /**
+     * Group的测试Demo
+     */
+    private void test1() {
+//        Group group = (Group)findViewById(R.id.group);
+//        group.setVisibility(View.GONE);
     }
 }

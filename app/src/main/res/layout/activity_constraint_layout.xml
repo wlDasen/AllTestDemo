@@ -6,242 +6,349 @@
     android:layout_height="match_parent"
     tools:context="net.george.alltestdemo.ConstraintLayoutActivity">
 
-    <!--重叠布局-->
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="A"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorAccent"/>
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        app:layout_constraintBottom_toBottomOf="@id/button1"
-        android:layout_marginBottom="40dp"/>
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:text="B"
-        android:background="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view"/>
+    <!--1.1.x新增的几个特性-->
+    <!--Group
+        Group帮助你对一组控件进行设置。最常见的情况是控制一组控件的visibility。你只需把控件的id添加到Group，就能同时对里面的所有控件进行操作
+    -->
+    <!--<Button-->
+        <!--android:id="@+id/button1"-->
+        <!--android:text="A"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@id/button2"/>-->
+    <!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:text="B"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/button1"-->
+        <!--app:layout_constraintRight_toRightOf="parent"/>-->
+    <!--<android.support.constraint.Group-->
+        <!--android:id="@+id/group"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:constraint_referenced_ids="button1, button2"/>-->
+    <!--Barrier-->
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:maxLines="1"-->
+        <!--android:text="TextViewAAAAA"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-    <!--进阶练习2-->
+    <!--<TextView-->
+        <!--android:id="@+id/textView2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--android:maxLines="1"-->
+        <!--android:text="TextViewBBBB"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
     <!--<android.support.constraint.Barrier-->
         <!--android:id="@+id/barrier"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--app:barrierDirection="bottom"-->
-        <!--app:constraint_referenced_ids="text_view1, text_view5"/>-->
+        <!--app:barrierDirection="end"-->
+        <!--app:constraint_referenced_ids="textView,textView2" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView3"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:text="TextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBBTextViewBBBB"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/barrier"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--Percent Dimensions-->
+    <!--<Button-->
+    <!--android:id="@+id/button1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:text="AAAAAAAAAAAAA"-->
+    <!--app:layout_constraintHeight_default="percent"-->
+    <!--app:layout_constraintHeight_percent="0.5"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintWidth_default="percent"-->
+    <!--app:layout_constraintWidth_percent="0.5" />-->
+
+    <!--重叠布局-->
+    <!--<Button-->
+    <!--android:id="@+id/button1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:text="A"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--android:background="@color/colorAccent"/>-->
     <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:background="#d8d8d8"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/barrier"/>-->
+    <!--android:id="@+id/view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1px"-->
+    <!--app:layout_constraintBottom_toBottomOf="@id/button1"-->
+    <!--android:layout_marginBottom="40dp"/>-->
+    <!--<Button-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:text="B"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/view"/>-->
+
+    <!--Placeholder
+        Placeholder顾名思义，就是用来一个占位的东西，它可以把自己的内容设置为ConstraintLayout内的其它view。因此它用来写布局的模版，也可以用来动态修改UI的内容。
+    -->
+    <include layout="@layout/template" />
+    <ImageView
+        android:id="@+id/top_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/place_holder_demo"/>
+    <ImageButton
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_save_black_24dp"
+        android:layout_marginBottom="16dp"/>
+    <ImageButton
+        android:id="@+id/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_edit_black_24dp"/>
+    <ImageButton
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_cancel_black_24dp"/>
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_delete_black_24dp"/>
+    <!--进阶练习2-->
+    <!--<android.support.constraint.Barrier-->
+    <!--android:id="@+id/barrier"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:barrierDirection="bottom"-->
+    <!--app:constraint_referenced_ids="text_view1, text_view5"/>-->
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="#d8d8d8"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/barrier"/>-->
     <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/guideline_vertical"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--app:layout_constraintGuide_percent="0.3"/>-->
+    <!--android:id="@+id/guideline_vertical"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--app:layout_constraintGuide_percent="0.3"/>-->
     <!--<ImageView-->
-        <!--android:id="@+id/image_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:src="@mipmap/ic_launcher"-->
-        <!--app:layout_constraintDimensionRatio="16:9"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="@id/guideline_vertical"/>-->
+    <!--android:id="@+id/image_view"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@mipmap/ic_launcher"-->
+    <!--app:layout_constraintDimensionRatio="16:9"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="@id/guideline_vertical"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view1"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/image_view"-->
-        <!--app:layout_constraintTop_toTopOf="@id/image_view"-->
-        <!--android:maxLines="2"-->
-        <!--android:ellipsize="end"-->
-        <!--android:textSize="15sp"-->
-        <!--android:textColor="#333333"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--android:text="六年级单元过关检测六年级单元过关检测六年级单元过关检测"/>-->
+    <!--android:id="@+id/text_view1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/image_view"-->
+    <!--app:layout_constraintTop_toTopOf="@id/image_view"-->
+    <!--android:maxLines="2"-->
+    <!--android:ellipsize="end"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="#333333"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--android:text="六年级单元过关检测六年级单元过关检测六年级单元过关检测"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view2"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:maxLines="1"-->
-        <!--android:ellipsize="end"-->
-        <!--android:text="签名"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textColor="#666666"-->
-        <!--app:layout_constraintLeft_toLeftOf="@id/text_view1"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/text_view1"/>-->
+    <!--android:id="@+id/text_view2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:maxLines="1"-->
+    <!--android:ellipsize="end"-->
+    <!--android:text="签名"-->
+    <!--android:textSize="12sp"-->
+    <!--android:textColor="#666666"-->
+    <!--app:layout_constraintLeft_toLeftOf="@id/text_view1"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/text_view1"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view3"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:maxLines="1"-->
-        <!--android:ellipsize="end"-->
-        <!--android:text="内容内容内容内容内容内容内容内容内容内容"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textColor="#666666"-->
-        <!--app:layout_constraintLeft_toLeftOf="@id/text_view2"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/text_view2"/>-->
+    <!--android:id="@+id/text_view3"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:maxLines="1"-->
+    <!--android:ellipsize="end"-->
+    <!--android:text="内容内容内容内容内容内容内容内容内容内容"-->
+    <!--android:textSize="12sp"-->
+    <!--android:textColor="#666666"-->
+    <!--app:layout_constraintLeft_toLeftOf="@id/text_view2"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/text_view2"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view4"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:maxLines="1"-->
-        <!--android:textSize="15sp"-->
-        <!--android:textColor="#f6454a"-->
-        <!--android:text="¥ 480"-->
-        <!--app:layout_constraintLeft_toLeftOf="@id/text_view3"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/text_view3"/>-->
+    <!--android:id="@+id/text_view4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:maxLines="1"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="#f6454a"-->
+    <!--android:text="¥ 480"-->
+    <!--app:layout_constraintLeft_toLeftOf="@id/text_view3"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/text_view3"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view5"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:maxLines="1"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textColor="#999999"-->
-        <!--android:text="¥ 1480"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/text_view4"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/text_view4"/>-->
+    <!--android:id="@+id/text_view5"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:maxLines="1"-->
+    <!--android:textSize="12sp"-->
+    <!--android:textColor="#999999"-->
+    <!--android:text="¥ 1480"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/text_view4"-->
+    <!--app:layout_constraintBottom_toBottomOf="@id/text_view4"/>-->
 
     <!--进阶练习1-->
     <!--子类目header-->
     <!--<ImageView-->
-        <!--android:id="@+id/image_icon"-->
-        <!--android:layout_width="20dp"-->
-        <!--android:layout_height="20dp"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--android:src="@mipmap/ic_launcher"-->
-        <!--android:layout_marginLeft="5dp"/>-->
+    <!--android:id="@+id/image_icon"-->
+    <!--android:layout_width="20dp"-->
+    <!--android:layout_height="20dp"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--android:src="@mipmap/ic_launcher"-->
+    <!--android:layout_marginLeft="5dp"/>-->
     <!--<TextView-->
-        <!--android:id="@+id/text_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/image_icon"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/image_icon"-->
-        <!--app:layout_constraintTop_toTopOf="@id/image_icon"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:text="少儿编程"-->
-        <!--android:textSize="15sp"-->
-        <!--android:textColor="#333333"/>-->
+    <!--android:id="@+id/text_view"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/image_icon"-->
+    <!--app:layout_constraintBottom_toBottomOf="@id/image_icon"-->
+    <!--app:layout_constraintTop_toTopOf="@id/image_icon"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:text="少儿编程"-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="#333333"/>-->
     <!--子类目布局开始-->
     <!--<Button-->
-        <!--android:id="@+id/button1"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="A"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toLeftOf="@id/button2" />-->
+    <!--android:id="@+id/button1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="A"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toLeftOf="@id/button2" />-->
     <!--<Button-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="B"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/button1"-->
-        <!--app:layout_constraintRight_toLeftOf="@id/button3"/>-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="B"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/button1"-->
+    <!--app:layout_constraintRight_toLeftOf="@id/button3"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button3"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="C"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/button2"-->
-        <!--app:layout_constraintRight_toRightOf="parent"/>-->
+    <!--android:id="@+id/button3"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="C"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/image_icon"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/button2"-->
+    <!--app:layout_constraintRight_toRightOf="parent"/>-->
     <!--第二排-->
     <!--<Button-->
-        <!--android:id="@+id/button4"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="D"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/button1"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toLeftOf="@id/button5"/>-->
+    <!--android:id="@+id/button4"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="D"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/button1"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toLeftOf="@id/button5"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button5"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="E"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/button1"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/button4"-->
-        <!--app:layout_constraintRight_toRightOf="parent"/>-->
+    <!--android:id="@+id/button5"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:text="E"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/button1"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/button4"-->
+    <!--app:layout_constraintRight_toRightOf="parent"/>-->
 
     <!--Guideline属性
         可以理解为布局辅助线，用于布局辅助，不在设备上显示
     -->
     <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/vertical_guide"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--app:layout_constraintGuide_percent="0.5"/>-->
+    <!--android:id="@+id/vertical_guide"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--app:layout_constraintGuide_percent="0.5"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button1"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:text="Guideline左边"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintRight_toLeftOf="@id/vertical_guide"-->
-        <!--android:layout_marginTop="16dp"/>-->
+    <!--android:id="@+id/button1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:text="Guideline左边"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintRight_toLeftOf="@id/vertical_guide"-->
+    <!--android:layout_marginTop="16dp"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:text="Guideline右边"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/vertical_guide"-->
-        <!--android:layout_marginTop="16dp"/>-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:text="Guideline右边"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintLeft_toRightOf="@id/vertical_guide"-->
+    <!--android:layout_marginTop="16dp"/>-->
     <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/horizontal_guide"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintGuide_begin="200dp"/>-->
+    <!--android:id="@+id/horizontal_guide"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:layout_constraintGuide_begin="200dp"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button3"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:text="Guideline上面"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintBottom_toTopOf="@id/horizontal_guide"/>-->
+    <!--android:id="@+id/button3"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:text="Guideline上面"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintBottom_toTopOf="@id/horizontal_guide"/>-->
     <!--<Button-->
-        <!--android:id="@+id/button4"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:text="Guideline下面"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/horizontal_guide"/>-->
+    <!--android:id="@+id/button4"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:text="Guideline下面"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/horizontal_guide"/>-->
 
     <!--宽高比例属性-->
     <!--<Button-->
