@@ -4,7 +4,7 @@
  * ConstraintLayout测试程序
      * 基本布局以及属性介绍 [原文链接](https://juejin.im/post/5a1d9ba66fb9a044fb07819e#heading-35)
      * 添加1.1.x特性 [原文链接](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/1019/8618.html)
-     * **动画部分待补充**
+     * 添加ConstraintSet动画测试接口 [原文链接](http://www.jianshu.com/p/575829baa39d)
  * Android常用功能测试程序
      * 获取屏幕宽高和屏幕密度 [原文链接](http://blog.csdn.net/liuwan1992/article/details/52795284)
  * 各个小Demo测试程序
