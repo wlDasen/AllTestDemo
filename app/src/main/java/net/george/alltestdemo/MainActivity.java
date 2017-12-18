@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button3.setOnClickListener(this);
         Button button4 = (Button)findViewById(R.id.button4);
         button4.setOnClickListener(this);
+        Button button5 = (Button)findViewById(R.id.button5);
+        button5.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button4: // 启动Layout布局和内部属性验证的Activity
                 Intent intent4 = new Intent(MainActivity.this, LayoutDemoActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.button5: // 启动RxJava的验证Activity
+                Intent intent5 = new Intent(MainActivity.this, RxJavaActivity.class);
+                startActivity(intent5);
+                break;
             default:
                 break;
         }

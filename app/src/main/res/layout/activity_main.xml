@@ -29,5 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Layout布局和内部属性验证"/>
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxJava测试接口"/>
 
 </LinearLayout>

@@ -19,7 +19,8 @@
         <activity android:name=".LittleDemoActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".CommonFunctionActivity" />
-        <activity android:name=".LayoutDemoActivity"></activity>
+        <activity android:name=".LayoutDemoActivity" />
+        <activity android:name=".RxJavaActivity"></activity>
     </application>
 
 </manifest>
