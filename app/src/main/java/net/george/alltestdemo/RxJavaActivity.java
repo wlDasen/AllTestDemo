@@ -1,14 +1,20 @@
 package net.george.alltestdemo;
 
+import android.annotation.TargetApi;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * RxJava验证Activity
@@ -22,8 +28,7 @@ public class RxJavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
 
-//        test1();
-        test2();
+        test4();
     }
 
     /**
@@ -117,6 +122,53 @@ public class RxJavaActivity extends AppCompatActivity {
                     @Override
                     public void call(String s) {
                         Log.d(TAG, "call: item:" + s);
+                    }
+                });
+    }
+    /**
+     * 应用场景2-由id取得图片并显示
+     */
+    @TargetApi(21)
+    private void test3() {
+        final int drawableRes = R.mipmap.ic_launcher;
+        Observable.create(new Observable.OnSubscribe<Drawable>() {
+
+            @Override
+            public void call(Subscriber<? super Drawable> subscriber) {
+                Drawable drawable = getTheme().getDrawable(drawableRes);
+                subscriber.onNext(drawable);
+                subscriber.onCompleted();
+            }
+        }).subscribe(new Observer<Drawable>() {
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Toast.makeText(RxJavaActivity.this, "Error", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(Drawable drawable) {
+                ImageView imageView = (ImageView)findViewById(R.id.imageView);
+                imageView.setImageDrawable(drawable);
+            }
+        });
+    }
+    /**
+     * 异步实现方式
+     */
+    private void test4() {
+        Observable.just(1, 2, 3, 4)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(TAG, "call: currentThread:" + Thread.currentThread().getName());
+                        Log.d(TAG, "call: number:" + integer);
                     }
                 });
     }
