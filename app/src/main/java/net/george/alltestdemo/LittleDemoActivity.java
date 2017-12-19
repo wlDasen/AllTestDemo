@@ -22,7 +22,7 @@ public class LittleDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_little_demo);
 
-        test1();
+        test2();
     }
 
     /**
@@ -89,9 +89,58 @@ public class LittleDemoActivity extends AppCompatActivity {
     }
 
     /**
+     * 抽象类测试接口
+     * 抽象类带abstract的没有方法体的方法子类必须实现，没有带abstract的带方法体的接口子类可以选择性实现（可实现可不实现）
+     * 抽象类里调用内部接口走的是子类对应的接口
+     */
+    private void test2() {
+        B b = new B();
+        b.init();
+    }
+
+    /**
      * 为泛型擦除接口测试准备的静态方法
      */
     public static <T> T add(T x, T y) {
         return y;
+    }
+
+    /**
+     * 为抽象类测试准备类A
+     */
+    public abstract class A {
+        public void init() {
+            method1();
+            method2();
+            method3();
+        }
+        public abstract void method1();
+        public abstract void method2();
+        public void method3() {
+            Log.d(TAG, "A method3: ");
+        }
+    }
+    /**
+     * 为抽象类测试准备类B
+     */
+    public class B extends A {
+
+        public void init() {
+            super.init();
+        }
+        @Override
+        public void method1() {
+            Log.d(TAG, "B method1: ");
+        }
+
+        @Override
+        public void method2() {
+            Log.d(TAG, "B method2: ");
+        }
+
+        @Override
+        public void method3() {
+            Log.d(TAG, "B method3: ");
+        }
     }
 }
