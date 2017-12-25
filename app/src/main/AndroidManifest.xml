@@ -20,7 +20,8 @@
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".CommonFunctionActivity" />
         <activity android:name=".LayoutDemoActivity" />
-        <activity android:name=".RxJavaActivity"></activity>
+        <activity android:name=".RxJavaActivity" />
+        <activity android:name=".CustomWidgetActivity"></activity>
     </application>
 
 </manifest>

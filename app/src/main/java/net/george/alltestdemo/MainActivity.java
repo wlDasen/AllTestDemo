@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 /**
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button4.setOnClickListener(this);
         Button button5 = (Button)findViewById(R.id.button5);
         button5.setOnClickListener(this);
+        Button button6 = (Button)findViewById(R.id.button6);
+        button6.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button5: // 启动RxJava的验证Activity
                 Intent intent5 = new Intent(MainActivity.this, RxJavaActivity.class);
                 startActivity(intent5);
+                break;
+            case R.id.button6: // 启动各种自定义Widget的验证Activity
+                Intent intent6 = new Intent(MainActivity.this, CustomWidgetActivity.class);
+                startActivity(intent6);
                 break;
             default:
                 break;
