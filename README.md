@@ -15,4 +15,4 @@
      * tools命名空间的使用 [原文链接](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0309/2567.html)
  * RxJava测试接口 **未完成待完善**
  * 各种自定义Widget测试程序
-     * 自定义Dialog测试接口
+     * 自定义Dialog测试接口
