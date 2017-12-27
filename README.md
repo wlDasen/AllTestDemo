@@ -13,6 +13,6 @@
      * 抽象类测试程序
  * Layout布局以及内部属性测试程序
      * tools命名空间的使用 [原文链接](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0309/2567.html)
- * RxJava测试接口 **未完成待完善**
+ * Retrofit+RxJava+Okhttp测试接口 **未完成待完善**
  * 各种自定义Widget测试程序
      * 自定义Dialog测试接口
