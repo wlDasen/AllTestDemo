@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent4 = new Intent(MainActivity.this, LayoutDemoActivity.class);
                 startActivity(intent4);
                 break;
-            case R.id.button5: // 启动RxJava的验证Activity
-                Intent intent5 = new Intent(MainActivity.this, RxJavaActivity.class);
+            case R.id.button5: // 启动Retrofit+RxJava+Okhttp的验证Activity
+                Intent intent5 = new Intent(MainActivity.this, RetrofitRxjavaOkhttpActivity.class);
                 startActivity(intent5);
                 break;
             case R.id.button6: // 启动各种自定义Widget的验证Activity

@@ -12,13 +12,15 @@
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="小Demo验证"/>
+            android:text="小Demo验证"
+            android:textAllCaps="false"/>
     </LinearLayout>
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ConstraintLayout验证"/>
+        android:text="ConstraintLayout验证"
+        android:textAllCaps="false"/>
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
@@ -28,16 +30,19 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Layout布局和内部属性验证"/>
+        android:text="Layout布局和内部属性验证"
+        android:textAllCaps="false"/>
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RxJava测试接口"/>
+        android:text="Retrofit+RxJava+Okhttp测试接口"
+        android:textAllCaps="false"/>
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义各种Widget测试接口"/>
+        android:text="自定义各种Widget测试接口"
+        android:textAllCaps="false"/>
 
 </LinearLayout>

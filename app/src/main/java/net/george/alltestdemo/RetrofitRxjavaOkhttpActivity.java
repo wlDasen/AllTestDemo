@@ -5,9 +5,24 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import net.george.alltestdemo.entity.MovieEntity;
+import net.george.alltestdemo.http.HttpMethods;
+import net.george.alltestdemo.http.MovieService;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -17,18 +32,25 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * RxJava验证Activity
- * Created at 2017.12.18 By George
+ * @author George
+ * @date 2017/12/27
+ * @email georgejiapeidi@gmail.com
+ * @describe Retrofit+Rxjava+Ohttp验证Activity
  */
-public class RxJavaActivity extends AppCompatActivity {
+public class RetrofitRxjavaOkhttpActivity extends AppCompatActivity {
     private static final String TAG = "jpd-RJAc";
+    @Bind(R.id.textView1)
+    TextView mTextView1;
+    @Bind(R.id.btnClickMe)
+    Button mBtnClickMe;
+    private Subscriber<MovieEntity> subscriber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rx_java);
+        setContentView(R.layout.activity_retrofit_rxjava_okhttp);
 
-        test4();
+        ButterKnife.bind(this);
     }
 
     /**
@@ -147,7 +169,7 @@ public class RxJavaActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(RxJavaActivity.this, "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(RetrofitRxjavaOkhttpActivity.this, "Error", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -171,5 +193,96 @@ public class RxJavaActivity extends AppCompatActivity {
                         Log.d(TAG, "call: number:" + integer);
                     }
                 });
+    }
+
+
+    @OnClick(R.id.btnClickMe)
+    public void onClick() {
+//        getTopMovie();
+//        getTopMoview2();
+        getTopMovie3();
+    }
+
+    /**
+     * 网络请求接口封装到一个类中实现的请求
+     */
+    private void getTopMovie3() {
+        subscriber = new Subscriber<MovieEntity>() {
+            @Override
+            public void onCompleted() {
+                Toast.makeText(RetrofitRxjavaOkhttpActivity.this, "Get TopMoview completed.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                mTextView1.setText(e.getMessage());
+            }
+
+            @Override
+            public void onNext(MovieEntity movieEntity) {
+                mTextView1.setText(movieEntity.toString());
+            }
+        };
+        HttpMethods.getInstance().getTopMovie(subscriber, 0, 10);
+    }
+
+    /**
+     * Retrofit结合Rxjava封装网络请求
+     */
+    private void getTopMoview2() {
+        String baseUrl = "https://api.douban.com/v2/movie/";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        MovieService movieService = retrofit.create(MovieService.class);
+        movieService.getTopMovie2(0, 10)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MovieEntity>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(RetrofitRxjavaOkhttpActivity.this, "Get TopMoview completed.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mTextView1.setText(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(MovieEntity movieEntity) {
+                        mTextView1.setText(movieEntity.toString());
+                    }
+                });
+    }
+    /**
+     * 只使用Retrofit封装网络请求
+     */
+    private void getTopMovie() {
+        String baseUrl = "https://api.douban.com/v2/movie/";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        MovieService movieService = retrofit.create(MovieService.class);
+        Call<MovieEntity> call = movieService.getTopMovie(0, 10);
+        Log.d(TAG, "getTopMovie: 1");
+        call.enqueue(new Callback<MovieEntity>() {
+            @Override
+            public void onResponse(Call<MovieEntity> call, Response<MovieEntity> response) {
+                Log.d(TAG, "onResponse: 2");
+                Log.d(TAG, "onResponse: " + response.body().toString());
+                mTextView1.setText(response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<MovieEntity> call, Throwable t) {
+                Log.d(TAG, "onFailure: message:" + t.getMessage());
+                mTextView1.setText(t.getMessage());
+            }
+        });
+        Log.d(TAG, "getTopMovie: 3");
     }
 }

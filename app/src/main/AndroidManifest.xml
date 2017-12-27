@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.george.alltestdemo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,7 @@
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".CommonFunctionActivity" />
         <activity android:name=".LayoutDemoActivity" />
-        <activity android:name=".RxJavaActivity" />
+        <activity android:name=".RetrofitRxjavaOkhttpActivity" />
         <activity android:name=".CustomWidgetActivity"></activity>
     </application>
 
