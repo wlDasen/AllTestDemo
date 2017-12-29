@@ -6,17 +6,26 @@ import android.util.JsonReader;
 import android.util.JsonWriter;
 import android.util.Log;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Since;
+import com.google.gson.annotations.Until;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.StringReader;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,9 +42,117 @@ public class GsonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gson);
 
-        test10();
+        test15();
+    }
+    // 如下是GsonBuilder基本使用
+    /**
+     * GsonBuilder:改变Gson的默认配置
+     */
+    private void test11() {
+        Gson gson = new GsonBuilder()
+                // 序列化null
+                .serializeNulls()
+                // 设置日期格式 在序列化和反序列化均生效
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                .create();
+        Gson gson2 = new Gson();
+        User user = new User("George", 29);
+        String jsonNull = gson.toJson(user);
+        Log.d(TAG, "test11: jsonNull:" + jsonNull);
+
+        User user2 = new User("George2", 29, "sunniwell", new Date());
+        String jsonDate = gson.toJson(user2);
+        Log.d(TAG, "test11: jsonDate:" + jsonDate);
+
+        Gson gson3 = new GsonBuilder()
+                // 禁止序列化内部类
+                .disableInnerClassSerialization()
+                .create();
+        User user3 = new User("George3", 29, "Inner", 30);
+        String jsonWithInner = gson2.toJson(user3);
+        String jsonWithoutInner = gson3.toJson(user3);
+        Log.d(TAG, "test11: jsonWithInner:" + jsonWithInner);
+        Log.d(TAG, "test11: jsonWithoutInner:" + jsonWithoutInner);
     }
 
+    // 以下是4种排除字段的方式
+    /**
+     * @Expose注解测试接口
+     */
+    private void test12() {
+        Category child1 = new Category();
+        child1.id = 1;
+        child1.name = "1";
+        Category child2 = new Category();
+        child2.id = 2;
+        child2.name = "2";
+        Category parent = new Category();
+        parent.id = 111;
+        parent.name = "111";
+        List<Category> list = new ArrayList<>();
+        list.add(child1);
+        list.add(child2);
+        Category category = new Category(222, "222", list, parent);
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        Log.d(TAG, "test12: " + gson.toJson(category));
+    }
+
+    /**
+     * @Since @Until注解测试接口
+     */
+    private void test13() {
+        SinceUntilSample sus1 = new SinceUntilSample();
+        sus1.since = "since";
+        sus1.until = "until";
+        sus1.test = "test";
+        Gson gson = new GsonBuilder().setVersion(4).create();
+        Log.d(TAG, "test13: " + gson.toJson(sus1));
+    }
+
+    /**
+     * 基于修饰符来决定是否导出某些字段的测试接口
+     */
+    private void test14() {
+        ModifierSample sample = new ModifierSample();
+        Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.FINAL, Modifier.PUBLIC, Modifier.PRIVATE).create();
+        Log.d(TAG, "test14: " + gson.toJson(sample));
+    }
+
+    /**
+     * 自定义策略测试接口
+     */
+    private void test15() {
+        Gson gson = new GsonBuilder().addSerializationExclusionStrategy(new ExclusionStrategy() {
+            @Override
+            public boolean shouldSkipField(FieldAttributes f) {
+//                Log.d(TAG, "shouldSkipField: name:" + f.getName());
+//                if ("finalField".equals(f.getName())) return true;
+//                Expose expose = f.getAnnotation(Expose.class);
+//                if (expose != null && !expose.serialize()) return true;
+                return false;
+            }
+
+            @Override
+            public boolean shouldSkipClass(Class<?> clazz) {
+                Log.d(TAG, "shouldSkipClass: clazz:" + clazz);
+                boolean flag = (clazz == int.class);
+                Log.d(TAG, "shouldSkipClass: flag:" + flag);
+                return flag;
+            }
+        }).create();
+        Gson gson2 = new Gson();
+        CustomStrategy customStrategy = new CustomStrategy();
+        customStrategy.age = 1;
+        customStrategy.height = 2;
+        customStrategy.tall = 3;
+        customStrategy.aaaField = 4;
+        customStrategy.finalField = 5;
+        customStrategy.aaa = 1.1f;
+        Log.d(TAG, "test15: gson:" + gson.toJson(customStrategy));
+        Log.d(TAG, "test15: gson2:" + gson2.toJson(customStrategy));
+    }
+
+    // 如下是Gson基本使用
     /**
      * 基本数据类型反序列化
      */
@@ -210,15 +327,28 @@ public class GsonActivity extends AppCompatActivity {
 //        @SerializedName("email_address")
         @SerializedName(value = "emailAddress", alternate = {"email", "email_address"})
         private String emailAddress;
+        private Date date;
+        private InnerClass innerClass;
         public User() {}
         public User(String name, int age) {
             this.name = name;
             this.age = age;
-        }public User(String name, int age, String emailAddress) {
+        }
+        public User(String name, int age, String emailAddress) {
             this(name, age);
             this.emailAddress = emailAddress;
         }
-
+        public User(String name, int age, String emailAddress, Date date) {
+            this(name, age, emailAddress);
+            this.date = date;
+        }
+        public User(String name, int age, String innerName, int innerAge) {
+            this.name = name;
+            this.age = age;
+            this.innerClass = new InnerClass();
+            this.innerClass.setName(innerName);
+            this.innerClass.setAge(innerAge);
+        }
 
         public String getEmailAddress() {
             return emailAddress;
@@ -244,9 +374,117 @@ public class GsonActivity extends AppCompatActivity {
             this.age = age;
         }
 
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public InnerClass getInnerClass() {
+            return innerClass;
+        }
+
+        public void setInnerClass(InnerClass innerClass) {
+            this.innerClass = innerClass;
+        }
+
+        public class InnerClass {
+            private String name;
+            private int age;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public int getAge() {
+                return age;
+            }
+
+            public void setAge(int age) {
+                this.age = age;
+            }
+
+            @Override
+            public String toString() {
+                return "[InnerClass]name:" + name + ",age:" + age;
+            }
+        }
+
         @Override
         public String toString() {
-            return "[User]name:" + name + ",age:" + age + ",emailAddress:" + emailAddress;
+            return "[User]name:" + name + ",age:" + age + ",emailAddress:" + emailAddress + ",date:" + date + ",innerClass:" + innerClass;
         }
     }
+
+    /**
+     * @Expose注解测试类
+     */
+    public class Category {
+        // @Expose:屏蔽某些字段的序列化和反序列化，不加此注解的不导出
+        @Expose public int id;
+        @Expose public String name;
+        @Expose public List<Category> children;
+        private Category parent;
+        public Category() {}
+        public Category(int id, String name, List<Category> children, Category parent) {
+            this.id = id;
+            this.name = name;
+            this.children = children;
+            this.parent = parent;
+        }
+
+        @Override
+        public String toString() {
+            StringBuffer stringBuffer = new StringBuffer();
+            for (Category child : children) {
+                stringBuffer.append(child);
+            }
+            stringBuffer.append("[Category]id:" + id + ",name:" + name + ",parent:" + parent);
+            return stringBuffer.toString();
+        }
+    }
+
+    /**
+     * @Since @Until注解测试类
+     * 导出GsonBuilder.setVersion >= Since && < Until，如果同时有2个注解，需要同时满足
+     */
+    public class SinceUntilSample {
+        @Since(4)
+        public String since;
+        @Until(6)
+        public String until;
+        @Since(5)
+        @Until(6)
+        public String test;
+    }
+}
+
+/**
+ * 基于修饰符来决定是否导出某些字段
+ */
+class ModifierSample {
+    final String finalField = "final";
+    static String staticField = "static";
+    public String publicField = "public";
+    protected String proctectedField = "proctected";
+    String defaultField = "default";
+    private String privateField = "private";
+}
+
+/**
+ * 自定义策略测试类
+ */
+class CustomStrategy {
+    public int age;
+    public Integer height;
+    @Expose public int tall;
+    public int finalField;
+    public int aaaField;
+    public float aaa;
 }
