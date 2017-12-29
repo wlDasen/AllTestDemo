@@ -10,6 +10,11 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Since;
@@ -42,7 +47,7 @@ public class GsonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gson);
 
-        test15();
+        test17();
     }
     // 如下是GsonBuilder基本使用
     /**
@@ -150,6 +155,33 @@ public class GsonActivity extends AppCompatActivity {
         customStrategy.aaa = 1.1f;
         Log.d(TAG, "test15: gson:" + gson.toJson(customStrategy));
         Log.d(TAG, "test15: gson2:" + gson2.toJson(customStrategy));
+    }
+
+    /**
+     * 自定义TypeAdapter测试接口
+     */
+    private void test16() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(User2.class, new UserTypeAdapter()).create();
+        User2 user2 = new User2("AAA", 20, "BBB");
+        Log.d(TAG, "test16: " + gson.toJson(user2));
+    }
+
+    /**
+     * JsonSerializer与JsonDeserializer实现单向接管
+     */
+    private void test17() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(Integer.class, new JsonDeserializer<Integer>() {
+            @Override
+            public Integer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                try {
+                    return json.getAsInt();
+                } catch (NumberFormatException e) {
+                    return -1;
+                }
+            }
+        }).create();
+        Log.d(TAG, "test17: " + gson.toJson(100));
+        Log.d(TAG, "test17: " + gson.fromJson("\"\"", Integer.class));
     }
 
     // 如下是Gson基本使用
@@ -462,6 +494,82 @@ public class GsonActivity extends AppCompatActivity {
         @Since(5)
         @Until(6)
         public String test;
+    }
+
+    public class User2 {
+        public String name;
+        public int age;
+        public String email;
+
+        public User2() {}
+        public User2(String name, int age, String email) {
+            this.name = name;
+            this.age = age;
+            this.email = email;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+    }
+
+    /**
+     * 自定义TypeAdapter测试类（序列化和反序列化都必须接管）
+     * 当我们为User.class 注册了 TypeAdapter之后，只要是操作User.class 那些之前介绍的@SerializedName 、FieldNamingStrategy、Since、Until、Expos通通都黯然失色，失去了效果，
+     * 只会调用我们实现的UserTypeAdapter.write(JsonWriter, User) 方法，我想怎么写就怎么写。
+     */
+    public class UserTypeAdapter extends TypeAdapter<User2> {
+
+        @Override
+        public void write(com.google.gson.stream.JsonWriter out, User2 value) throws IOException {
+            out.beginObject();
+            out.name("name").value(value.getName())
+                    .name("age").value(value.getAge())
+                    .name("email").value(value.getEmail());
+            out.endObject();
+        }
+
+        @Override
+        public User2 read(com.google.gson.stream.JsonReader in) throws IOException {
+            User2 user2 = new User2();
+            in.beginObject();
+            while (in.hasNext()) {
+                switch (in.nextName()) {
+                    case "name":
+                        user2.name = in.nextString();
+                        break;
+                    case "age":
+                        user2.age = in.nextInt();
+                        break;
+                    case "email":
+                    case "email_address":
+                    case "emailAddress":
+                        user2.email = in.nextString();
+                        break;
+                }
+            }
+            return user2;
+        }
     }
 }
 
