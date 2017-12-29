@@ -16,3 +16,4 @@
  * Retrofit+RxJava+Okhttp测试接口 **未完成待完善**
  * 各种自定义Widget测试程序
      * 自定义Dialog测试接口
+ * Google Gson测试程序 [原文链接](https://www.jianshu.com/p/e740196225a4)
