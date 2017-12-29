@@ -17,4 +17,4 @@
  * 各种自定义Widget测试程序
      * 自定义Dialog测试接口
  * Google Gson测试程序 [原文链接](https://www.jianshu.com/p/e740196225a4)
-     * **遗留为解决问题：.disableInnerClassSerialization序列化失败**
+     * **遗留未解决问题：.disableInnerClassSerialization序列化失败**
