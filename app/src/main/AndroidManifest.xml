@@ -24,7 +24,8 @@
         <activity android:name=".LayoutDemoActivity" />
         <activity android:name=".RetrofitRxjavaOkhttpActivity" />
         <activity android:name=".CustomWidgetActivity" />
-        <activity android:name=".GsonActivity"></activity>
+        <activity android:name=".GsonActivity" />
+        <activity android:name=".OkhttpActivity"></activity>
     </application>
 
 </manifest>

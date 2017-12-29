@@ -50,5 +50,11 @@
         android:layout_height="wrap_content"
         android:text="Gson测试接口"
         android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Okhttp测试接口"
+        android:textAllCaps="false"/>
 
 </LinearLayout>
