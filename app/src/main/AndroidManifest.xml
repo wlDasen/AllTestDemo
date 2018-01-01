@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.george.alltestdemo">
 
+    <!--访问互联网权限-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
