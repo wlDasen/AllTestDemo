@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context="net.george.alltestdemo.CustomViewActivity">
 
+    <net.george.alltestdemo.view.CustomView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import net.george.alltestdemo.view.CustomView;
+
 /**
  * 此项目用来纪录所有的练习Demo，主要是为了加强和巩固Android各个领域的知识点
  * Created at 2017.12.10 By George
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent9);
                 break;
             case R.id.button10: // 启动自定义View的验证Activity
-                Intent intent10 = new Intent(MainActivity.this, Java8Activity.class);
+                Intent intent10 = new Intent(MainActivity.this, CustomViewActivity.class);
                 startActivity(intent10);
                 break;
             default:
