@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button7.setOnClickListener(this);
         Button button8 = (Button)findViewById(R.id.button8);
         button8.setOnClickListener(this);
+        Button button9 = (Button)findViewById(R.id.button9);
+        button9.setOnClickListener(this);
+        Button button10 = (Button)findViewById(R.id.button10);
+        button10.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button8: // 启动Okhttp的验证Activity
                 Intent intent8 = new Intent(MainActivity.this, OkhttpActivity.class);
                 startActivity(intent8);
+                break;
+            case R.id.button9: // 启动Java8新增特性的验证Activity
+                Intent intent9 = new Intent(MainActivity.this, Java8Activity.class);
+                startActivity(intent9);
+                break;
+            case R.id.button10: // 启动自定义View的验证Activity
+                Intent intent10 = new Intent(MainActivity.this, Java8Activity.class);
+                startActivity(intent10);
                 break;
             default:
                 break;

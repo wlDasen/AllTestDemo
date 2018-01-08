@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.george.alltestdemo">
 
-    <!--访问互联网权限-->
+    <!-- 访问互联网权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -26,7 +26,9 @@
         <activity android:name=".RetrofitRxjavaOkhttpActivity" />
         <activity android:name=".CustomWidgetActivity" />
         <activity android:name=".GsonActivity" />
-        <activity android:name=".OkhttpActivity"></activity>
+        <activity android:name=".OkhttpActivity" />
+        <activity android:name=".Java8Activity" />
+        <activity android:name=".CustomViewActivity"></activity>
     </application>
 
 </manifest>

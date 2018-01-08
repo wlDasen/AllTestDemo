@@ -56,5 +56,17 @@
         android:layout_height="wrap_content"
         android:text="Okhttp测试接口"
         android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Java8特性测试接口"/>
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="自定义View测试接口"/>
 
 </LinearLayout>
