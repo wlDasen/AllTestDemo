@@ -28,7 +28,8 @@
         <activity android:name=".GsonActivity" />
         <activity android:name=".OkhttpActivity" />
         <activity android:name=".Java8Activity" />
-        <activity android:name=".CustomViewActivity"></activity>
+        <activity android:name=".CustomViewActivity" />
+        <activity android:name=".BasicComponentActivity"></activity>
     </application>
 
 </manifest>
