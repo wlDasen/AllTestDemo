@@ -18,6 +18,6 @@
      * 自定义Dialog测试接口
  * 自定义View测试程序 [原文链接系列](https://juejin.im/post/5962a3746fb9a06ba2687226)
  * 各种Android基本控件测试程序
-     * ViewPager测试程序
+     * ViewPager测试程序
  * Google Gson测试程序 [原文链接](https://www.jianshu.com/p/e740196225a4)
      * **遗留未解决问题：.disableInnerClassSerialization序列化失败**
