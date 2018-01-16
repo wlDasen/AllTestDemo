@@ -74,5 +74,11 @@
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:text="Andriod各种基本控件测试接口"/>
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Android四大组件之Service"/>
 
 </LinearLayout>

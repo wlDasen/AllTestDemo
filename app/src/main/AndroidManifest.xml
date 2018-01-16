@@ -29,7 +29,13 @@
         <activity android:name=".OkhttpActivity" />
         <activity android:name=".Java8Activity" />
         <activity android:name=".CustomViewActivity" />
-        <activity android:name=".BasicComponentActivity"></activity>
+        <activity android:name=".BasicComponentActivity" />
+        <activity android:name=".ServiceActivity" />
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

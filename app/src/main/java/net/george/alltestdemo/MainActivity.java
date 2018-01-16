@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button10.setOnClickListener(this);
         Button button11 = (Button)findViewById(R.id.button11);
         button11.setOnClickListener(this);
+        Button button12 = (Button)findViewById(R.id.button12);
+        button12.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button11: // 启动Andriod各种基本控件的验证Activity
                 Intent intent11 = new Intent(MainActivity.this, BasicComponentActivity.class);
                 startActivity(intent11);
+                break;
+            case R.id.button12: // 启动Android四大组件之Service验证Activity
+                Intent intent12 = new Intent(MainActivity.this, ServiceActivity.class);
+                startActivity(intent12);
                 break;
             default:
                 break;

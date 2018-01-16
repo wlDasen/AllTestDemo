@@ -3,15 +3,30 @@ package net.george.alltestdemo.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import net.george.alltestdemo.R;
+
+/**
+ * @author George
+ * @date 2018/1/10
+ * @email georgejiapeidi@gmail.com
+ * @describe 自定义View for CustomViewActivity
+ */
 public class CustomView extends View {
     private static final String TAG = "jpd-CustomView";
     private Paint mPaint;
@@ -27,7 +42,7 @@ public class CustomView extends View {
         Log.d(TAG, "onDraw: ");
 
         initPain();
-        test6(canvas);
+        test7(canvas);
     }
 
     /**
@@ -35,6 +50,44 @@ public class CustomView extends View {
      */
     private void initPain() {
         mPaint = new Paint();
+    }
+
+    /**
+     * 颜色测试接口
+     * @param canvas
+     */
+    private void test7(Canvas canvas) {
+        /*
+        mPaint.setColor(Color.parseColor("#009688"));
+        canvas.drawRect(30, 30, 230, 180, mPaint);
+
+        mPaint.setStrokeWidth(20);
+        mPaint.setColor(Color.parseColor("#FF9800"));
+        canvas.drawLine(300, 30, 450, 180, mPaint);
+
+        mPaint.setColor(Color.parseColor("#E91E63"));
+        canvas.drawText("HenCoder", 500, 100, mPaint);
+        */
+        // 3种模式：CLAMP、REPEAT、MIRROR
+        Shader shader = new LinearGradient(100, 100, 500, 500, Color.parseColor("#E91E63"),
+                Color.parseColor("#2196F3"), Shader.TileMode.REPEAT);
+//        mPaint.setShader(shader);
+        // Paint设置Shader之后，setColor/setARGB就不起作用了
+//        mPaint.setColor(Color.RED);
+//        canvas.drawRect(100, 100, 800, 800, mPaint);
+        Shader radialShader = new RadialGradient(600, 800, 200, Color.parseColor("#E91E63"),
+                Color.parseColor("#2196F3"), Shader.TileMode.CLAMP);
+//        mPaint.setShader(radialShader);
+//        canvas.drawCircle(600, 800, 600, mPaint);
+        Shader sweepGradient = new SweepGradient(300, 300, Color.parseColor("#E91E63"), Color.parseColor("#2196F3"));
+//        mPaint.setShader(sweepGradient);
+//        canvas.drawCircle(300, 300, 200, mPaint);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.batman);
+//        canvas.drawBitmap(bitmap, 100, 100, mPaint);
+        Shader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.MIRROR, Shader.TileMode.REPEAT);
+        mPaint.setShader(bitmapShader);
+        canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
     }
 
     /**
